@@ -18,14 +18,25 @@ string[] FillArray(int lenght)
     string[] array = new string[lenght];
     for (int i = 0; i < lenght; i++)
     {
-        array[i] = PrintString($"Введите строку массива {i+1}: ");
+        array[i] = PrintString($"Введите строку массива {i + 1}: ");
     }
     return array;
 }
 
+void SortArray(string[] array)
+{
+    string stringArray = string.Empty;
+    string[] sortArray = new string[0];
+    for (int i = 0; i < array.Length; i++)
+    {
+        stringArray = array[i];
+        Console.WriteLine(stringArray.Length <= 3 ? $"[{String.Join(", ", array)}] -> [{String.Join(", ", stringArray)}]" : "[]");
+    }
+}
+
 void PrintArray(string[] array)
 {
-    Console.Write($"Mas -> [{String.Join(", ", array)}]");
+    Console.WriteLine($"Mas -> [{String.Join(", ", array)}]");
 }
 
 
@@ -33,3 +44,5 @@ void PrintArray(string[] array)
 int lenght = Print("Введите длину массива: ");
 string[] getArray = FillArray(lenght);
 PrintArray(getArray);
+Console.WriteLine("-----");
+SortArray(getArray);
