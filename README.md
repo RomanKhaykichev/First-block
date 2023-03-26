@@ -87,6 +87,7 @@ void PrintArray(string[] array, string[] newArray)
 }
 ```
 *Сбор функций*
+___
 ```
 int lenght = Print("Задайте длину первоначального массива: ");
 string[] getArray = FillArray(lenght);
