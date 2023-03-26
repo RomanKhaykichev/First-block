@@ -1,5 +1,5 @@
 ﻿Console.Clear();
-
+Console.WriteLine("---Из массива строк сформировать массив из строк, длина которых <= 3 символа.---");
 
 int Print(string message)
 {
@@ -18,31 +18,50 @@ string[] FillArray(int lenght)
     string[] array = new string[lenght];
     for (int i = 0; i < lenght; i++)
     {
-        array[i] = PrintString($"Введите строку массива {i + 1}: ");
+        array[i] = PrintString($"Введите {i + 1} строку массива: ");
     }
     return array;
 }
 
-void SortArray(string[] array)
+int GetLenghtNewArray(string[] array, int symbol = 3)
 {
+    int lenghtNewArray = 0;
     string stringArray = string.Empty;
-    string[] sortArray = new string[0];
     for (int i = 0; i < array.Length; i++)
     {
         stringArray = array[i];
-        Console.WriteLine(stringArray.Length <= 3 ? $"[{String.Join(", ", array)}] -> [{String.Join(", ", stringArray)}]" : "[]");
+        if (stringArray.Length <= symbol) lenghtNewArray++;
     }
+    return lenghtNewArray;
 }
 
-void PrintArray(string[] array)
+string[] GetNewArray(string[] array, int lenghtNewArray, int symbol = 3)
 {
-    Console.WriteLine($"Mas -> [{String.Join(", ", array)}]");
+    string[] newArray = new string[lenghtNewArray];
+    string stringArray = string.Empty;
+    int index = 0;
+    for (int i = 0; i < array.Length; i++)
+    {
+        stringArray = array[i];
+        if (stringArray.Length <= symbol)
+        {
+            newArray[index] = stringArray;
+            index++;
+        }
+    }
+    return newArray;
+}
+
+void PrintArray(string[] array, string[] newArray)
+{
+    Console.WriteLine($"[{String.Join(", ", array)}] => [{String.Join(", ", newArray)}]");
 }
 
 
 
-int lenght = Print("Введите длину массива: ");
+int lenght = Print("Задайте длину первоначального массива: ");
 string[] getArray = FillArray(lenght);
-PrintArray(getArray);
-Console.WriteLine("-----");
-SortArray(getArray);
+Console.WriteLine("--Answer--");
+int lenghtNewArray = GetLenghtNewArray(getArray);
+string[] newArray = GetNewArray(getArray, lenghtNewArray);
+PrintArray(getArray,newArray);
